@@ -1,0 +1,37 @@
+server:
+  port: 8081
+
+
+
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 500MB
+      max-request-size: 500MB
+  datasource:
+    druid:
+      url: jdbc:mysql://159.75.9.164:3306/class?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false
+      username: root
+      password: Tiancai123
+      driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    host: 127.0.0.1
+
+minio:
+  endpoint: http://127.0.0.1:9000
+  accessKey: AKIAIOSFODNN7EXAMPLE
+  secretKey: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+  bucketName: test
+  articleBucket: article
+  imageBucket: images
+#  bucketName: classfiles
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: assign_id
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  file:
+    name: /var/log/myBlog/mybatis.log
