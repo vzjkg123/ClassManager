@@ -1,14 +1,13 @@
 package top.ltcnb.classmanager.Entity;
 
+
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 @Data
-public class User {
+public class Classes {
     @TableId
-    private Integer id;
+    private Long id;
     private String name;
-    private String account;
-    private String password;
-    private String tel;
+    private String description;
 }

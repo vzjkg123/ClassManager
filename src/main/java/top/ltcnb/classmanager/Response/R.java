@@ -1,7 +1,6 @@
 package top.ltcnb.classmanager.Response;
 
 import lombok.Data;
-import top.ltcnb.classmanager.Enum.Status;
 
 @Data
 public class R<T> {
@@ -9,22 +8,19 @@ public class R<T> {
     private String msg;
     private T data;
 
-    public R(Integer status, String msg) {
+    private R(Integer status, String msg) {
         this.status = status;
         this.msg = msg;
     }
 
-    public R(Integer status, String msg, T data) {
+    private R(Integer status, String msg, T data) {
         this.status = status;
         this.msg = msg;
-
         this.data = data;
     }
 
-    public R(Integer status, T data) {
+    private R(Integer status, T data) {
         this.status = status;
-        this.msg = msg;
-
         this.data = data;
     }
 
@@ -34,10 +30,6 @@ public class R<T> {
 
     public static <T> R<T> success(T data) {
         return new R<>(1, data);
-    }
-
-    public static <T> R<T> success(String message, T data) {
-        return new R<>(1, message, data);
     }
 
     public static <T> R<T> failed(String message) {

@@ -1,7 +1,6 @@
 package top.ltcnb.classmanager.Controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -19,8 +18,8 @@ import java.util.UUID;
 @Slf4j
 @RequestMapping("/user")
 public class UserController {
-    IUserService iUserService;
-    StringRedisTemplate stringRedisTemplate;
+    final IUserService iUserService;
+    final StringRedisTemplate stringRedisTemplate;
 
     @Autowired
     public UserController(IUserService iUserService, StringRedisTemplate stringRedisTemplate) {
@@ -34,8 +33,8 @@ public class UserController {
      */
     @PostMapping("/login")
     public R<Object> login(@RequestParam String account, @RequestParam String password) {
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.select("id", "password").eq("account", account);
+        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.select(User::getId, User::getPassword, User::getName).eq(User::getAccount, account);
         User user = iUserService.getOne(queryWrapper);
         if (user == null) return R.failed("账号不存在");
         if (!user.getPassword().equals(password)) return R.failed("密码错误");
@@ -44,6 +43,7 @@ public class UserController {
         stringRedisTemplate.opsForValue().set(user.getId().toString(), token);
         res.put("id", user.getId());
         res.put("token", token);
+        res.put("name", user.getName());
         return R.success(res);
     }
 

@@ -1,4 +1,4 @@
-package top.ltcnb.classmanager.Dao;
+package top.ltcnb.classmanager.Mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
