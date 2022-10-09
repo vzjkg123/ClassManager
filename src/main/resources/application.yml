@@ -1,9 +1,6 @@
 server:
   port: 8081
 
-
-
-
 spring:
   servlet:
     multipart:
@@ -17,14 +14,20 @@ spring:
       driver-class-name: com.mysql.cj.jdbc.Driver
   redis:
     host: 127.0.0.1
+  jackson:
+    time-zone: GMT+8
 
 minio:
-  endpoint: http://127.0.0.1:9000
-  accessKey: AKIAIOSFODNN7EXAMPLE
-  secretKey: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+  endpoint: http://43.138.143.130:9000
+  accessKey: severExample
+  secretKey: serverExampleSecretPassword
+#  endpoint: http://127.0.0.1:9000
+#  accessKey: AKIAIOSFODNN7EXAMPLE
+#  secretKey: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
   bucketName: test
   articleBucket: article
   imageBucket: images
+  homeworkBucket: homework
 #  bucketName: classfiles
 mybatis-plus:
   global-config:
